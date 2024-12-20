@@ -1,9 +1,9 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image.prod.js"></script>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image-aframe.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image-aframe.prod.js"></script>
     <meta name="apple-mobile-web-app-capable" content="yes">
 
     <style>
@@ -146,11 +146,11 @@
         const exampleTarget4 = document.getElementById("example-target4");
         const exampleTarget5 = document.getElementById("example-target5");
 
-        var vid1 = document.getElementById("vegetto");
-        var vid2 = document.getElementById("ShenLong");
-        var vid3 = document.getElementById("Van_Gogh");
-        var vid4 = document.getElementById("venus");
-        var vid5 = document.getElementById("Inner_flame");
+        var vid1 = document.getElementById("doctor_doctor");
+        var vid2 = document.getElementById("goku");
+        var vid3 = document.getElementById("iron_maiden");
+        var vid4 = document.getElementById("tennis");
+        var vid5 = document.getElementById("Van_Gogh");
         //------------------------------
         // detect target found
         exampleTarget1.addEventListener("targetFound", event => {          
@@ -238,41 +238,41 @@
       </div>
     </div>
     <a-scene 
-      mindar-image="uiScanning: #example-scanning-overlay; uiLoading: #progress_bar; imageTargetSrc: targets.mind; maxTrack: 1; filterMinCF:0.00000001; filterBeta: 100; warmupTolerance: 5; missTolerance: 3" 
+      mindar-image="uiScanning: #example-scanning-overlay; uiLoading: #progress_bar; imageTargetSrc: targetzotte.mind; maxTrack: 1; filterMinCF:0.00000001; filterBeta: 100; warmupTolerance: 5; missTolerance: 3" 
       color-space="sRGB" 
       renderer="colorManagement: true, physicallyCorrectLights" 
       vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
 
 
       <a-assets>
-        <video id="vegetto" muted loop="true" src="video/vegetto.mp4" webkit-playsinline></video>
-        <video id="ShenLong" muted loop="true" src="video/ShenLong.mp4" webkit-playsinline></video>
+        <video id="doctor_doctor" muted loop="true" src="video/doctor_doctor.mp4" webkit-playsinline></video>
+        <video id="goku" muted loop="true" src="video/goku.mp4" webkit-playsinline></video>
+        <video id="iron_maiden" muted loop="true" src="video/iron_maiden.mp4" webkit-playsinline></video>
+        <video id="tennis" muted loop="true" src="video/tennis.mp4" webkit-playsinline></video>
         <video id="Van_Gogh" muted loop="true" src="video/Van_Gogh.mp4" webkit-playsinline></video>
-        <video id="venus" muted loop="true" src="video/venus.mp4" webkit-playsinline></video>
-        <video id="Inner_flame" muted loop="true" src="video/Inner_flame.mp4" webkit-playsinline></video>
  
       </a-assets>
 
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
       <a-entity id="example-target1" mindar-image-target="targetIndex: 0">
-        <a-video src="#vegetto" width="1" height="1.3" opacity="0.85"></a-video>
+        <a-video src="#doctor_doctor" width="1" height="1.3" opacity="0.85"></a-video>
       </a-entity>
 
       <a-entity id="example-target2" mindar-image-target="targetIndex: 1">
-        <a-video src="#ShenLong" width="1" height="1.3" opacity="0.85"></a-video>
+        <a-video src="#goku" width="1" height="1.3" opacity="0.85"></a-video>
       </a-entity>
 
       <a-entity id="example-target3" mindar-image-target="targetIndex: 2">
-        <a-video src="#Van_Gogh" width="1" height="1.3" opacity="0.85"></a-video>
+        <a-video src="#iron_maiden" width="1" height="1.3" opacity="0.85"></a-video>
       </a-entity>
 
       <a-entity id="example-target4" mindar-image-target="targetIndex: 3">
-        <a-video src="#venus" width="1" height="1.3" opacity="0.85"></a-video>
+        <a-video src="#tennis" width="1" height="1.3" opacity="0.85"></a-video>
       </a-entity>
 
       <a-entity id="example-target5" mindar-image-target="targetIndex: 4">
-        <a-video src="#Inner_flame" width="1" height="0.77" opacity="0.85"></a-video>
+        <a-video src="#Van_Gogh" width="1" height="0.77" opacity="0.85"></a-video>
       </a-entity>
 
     </a-scene>
