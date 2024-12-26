@@ -238,7 +238,7 @@
       </div>
     </div>
     <a-scene 
-      mindar-image="uiScanning: #example-scanning-overlay; uiLoading: #progress_bar; imageTargetSrc: targetzotte.mind; maxTrack: 1; filterMinCF:0.00000001; filterBeta: 100; warmupTolerance: 5; missTolerance: 3" 
+      mindar-image="uiScanning: #example-scanning-overlay; uiLoading: #progress_bar; imageTargetSrc: targetzotte.mind; maxTrack: 1; filterMinCF:0.00000001; filterBeta: 100; warmupTolerance: 5; missTolerance: 5" 
       color-space="sRGB" 
       renderer="colorManagement: true, physicallyCorrectLights" 
       vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
@@ -260,11 +260,11 @@
       </a-entity>
 
       <a-entity id="example-target2" mindar-image-target="targetIndex: 1">
-        <a-video src="#goku" width="0.7" height="1.05" position="-0.05 0 0" opacity="0.85"></a-video>
+        <a-video src="#goku" width="1" height="1.05" position="0 0 0" opacity="0.85"></a-video>
       </a-entity>
 
       <a-entity id="example-target3" mindar-image-target="targetIndex: 2">
-        <a-video src="#iron_maiden" width="1" height="1.3" opacity="0.85"></a-video>
+        <a-video src="#iron_maiden" width="1" height="1" opacity="0.85"></a-video>
       </a-entity>
 
       <a-entity id="example-target4" mindar-image-target="targetIndex: 3">
