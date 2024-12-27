@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image.prod.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image-aframe.prod.js"></script>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <style>
+      #example-scanning-overlay {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: transparent;
+        z-index: 2;
+      }
+      #progress_bar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: transparent;
+        z-index: 3;
+      }
+      #progress_bar .inner_progress{
+        align-items: center;
+        justify-content: center;
+        position: absolute;        
+      }
+      #msg {
+        color: white;
+        font-style: bold;
+        font-size: 5em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        z-index: 4;
+      }
+
+      progress {
+        -webkit-appearance: none;
+        vertical-align:  0;
+        width: 300px;
+      }
+      ::-webkit-progress-bar {        
+        background-color: none;
+        opacity: 0.5;
+        height: 100px;        
+      }
+      ::-webkit-progress-value {
+        opacity: 0.5;
+        background-color: white;
+        height: 100%; 
+        widht: 100%;
+      }
+      #progress_bar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: transparent;
+        z-index: 3;
+      }
+
+      @media (min-aspect-ratio: 1/1) {
+        #example-scanning-overlay .inner {
+          width: 50vh;
+          height: 50vh;
+        }
+      }
+      @media (max-aspect-ratio: 1/1) {
+        #example-scanning-overlay .inner {
+          width: 80vw;
+          height: 80vw;
+        }
+      }
+
+      #example-scanning-overlay .inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background:
+          linear-gradient(to right, white 5px, transparent 5px) 0 0,
+          linear-gradient(to right, white 5px, transparent 5px) 0 100%,
+          linear-gradient(to left, white 5px, transparent 5px) 100% 0,
+          linear-gradient(to left, white 5px, transparent 5px) 100% 100%,
+          linear-gradient(to bottom, white 5px, transparent 5px) 0 0,
+          linear-gradient(to bottom, white 5px, transparent 5px) 100% 0,
+          linear-gradient(to top, white 5px, transparent 5px) 0 100%,
+          linear-gradient(to top, white 5px, transparent 5px) 100% 100%;
+        background-repeat: no-repeat;
+        background-size: 40px 40px;
+      }
+
+      #example-scanning-overlay.hidden {
+        display: none;
+      }
+      #progress_bar.hidden {
+        display: none;
+      }     
+      #example-scanning-overlay img {
+        opacity: 0.6;
+        width: 90%;
+        align-self: center;
+      }
+
+      #example-scanning-overlay .inner .scanline {
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        background: white;
+        animation: move 2s linear infinite;
+      }
+      @keyframes move {
+        0%, 100% { top: 0% }
+        50% { top: calc(100% - 5px) }
+      }
+    </style>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function() {
+
+        date = Date.now(); //current timestamp since UNIX epoch
+        //get a reference to the progress element using its id attribute
+        progress = document.getElementById('loader');
+        interval = setInterval(updateProgress, 100);
+
+        // detect target found
+        const exampleTarget1 = document.getElementById("example-target1");
+        const exampleTarget2 = document.getElementById("example-target2");
+
+        var vid1 = document.getElementById("joven");
+        var vid2 = document.getElementById("niños");
+        //------------------------------
+        // detect target found
+        exampleTarget1.addEventListener("targetFound", event => {          
+          vid1.play();
+          vid1.muted=false;
+        });
+        // detect target lost
+        exampleTarget1.addEventListener("targetLost", event => {          
+          vid1.pause();
+          vid1.muted=false;
+        });
+        //------------------------------
+        // detect target found
+        exampleTarget2.addEventListener("targetFound", event => {          
+          vid2.play();
+          vid2.muted=false;
+        });
+        // detect target lost
+        exampleTarget2.addEventListener("targetLost", event => {          
+          vid2.pause();
+          vid2.muted=false;
+        });
+        //------------------------------
+      });
+
+      function updateProgress() {
+        msg.innerHTML = progress.value.toFixed(2) + "%";
+        if (progress.value >= 100) {
+          //stop running this function after value reaches 100 (percent)
+          clearInterval(interval);
+        }
+        var newDate = Date.now();
+        var milliseconds = newDate - date;
+
+        var seconds = Math.floor(milliseconds / 1000);
+        loader.value += seconds/130;
+      }
+    </script>
+
+  </head>
+  <body>
+    <div id="progress_bar" class="hidden">
+      <div class="inner_progress">
+        <div id="msg" style="max-height:100px;overflow-y: auto"></div>
+        <progress id="loader" value="15" max="100"></progress>        
+      </div>
+    </div>
+    <div id="example-scanning-overlay" class="hidden">
+      <div class="inner">
+        <img src="img.png"/>
+        <div class="scanline"></div>
+      </div>
+    </div>
+    <a-scene 
+      mindar-image="uiScanning: #example-scanning-overlay; uiLoading: #progress_bar; imageTargetSrc: marcadorfotos.mind; maxTrack: 1; filterMinCF:0.00000001; filterBeta: 100; warmupTolerance: 5; missTolerance: 5" 
+      color-space="sRGB" 
+      renderer="colorManagement: true, physicallyCorrectLights" 
+      vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+
+
+      <a-assets>
+        <video id="joven" muted loop="true" src="video/joven.mp4" webkit-playsinline></video>
+        <video id="niños" muted loop="true" src="video/niños.mp4" webkit-playsinline></video> 
+      </a-assets>
+
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+      <a-entity id="example-target1" mindar-image-target="targetIndex: 0">
+        <a-video src="#joven" width="1" height="1.8" opacity="0.85"></a-video>
+      </a-entity>
+
+      <a-entity id="example-target2" mindar-image-target="targetIndex: 1">
+        <a-video src="#niños" width="1" height="1.8" opacity="0.85"></a-video>
+      </a-entity>
+
+    </a-scene>
+  </body>
+</html>
